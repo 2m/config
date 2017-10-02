@@ -23,11 +23,11 @@ object LinkSourcePlugin extends AutoPlugin {
     },
     (doc in Compile) := {
       val result = (doc in Compile).value
-
       val dir = (target in doc in Compile).value
+      val log = streams.value.log
 
       javadocSourceBaseUrl.value.foreach { url =>
-        rewriteSourceLinks(dir, url, streams.value.log)
+        rewriteSourceLinks(dir, url, log)
       }
 
       result
